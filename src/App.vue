@@ -34,12 +34,14 @@ export default {
 
     const star = ref(0);
 
-    const questions = computed(() =>
-      Object.values(store.state.questionEntity.entities)
-    );
-    const matchedQuestions = computed(() =>
-      questions.value.filter((question) => question.star === star.value)
-    );
+    const questions = computed(() => {
+      console.log("compute questions");
+      return Object.values(store.state.questionEntity.entities);
+    });
+    const matchedQuestions = computed(() => {
+      console.log("compute mathcedQuestions");
+      return questions.value.filter((question) => question.star === star.value);
+    });
 
     function setStar(number) {
       star.value = number;
