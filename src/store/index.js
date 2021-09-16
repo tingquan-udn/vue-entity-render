@@ -59,7 +59,13 @@ export default createStore({
       },
     },
   },
-  mutations: {},
+  mutations: {
+    updatedQuestion(state, { id, question, star }) {
+      let targetQuestion = state.questionEntity.entities[id];
+      if (question) targetQuestion.question = question;
+      if (star) targetQuestion.star = star;
+    },
+  },
   actions: {},
   modules: {},
 });

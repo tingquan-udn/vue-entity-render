@@ -1,5 +1,6 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
+  <AppDummy :obj="new Object()" />
+  <img alt="Vue logo" src="./assets/logo.png" @click="updatedQuestion" />
   <div class="stars">
     <button
       v-for="i in 5"
@@ -16,11 +17,13 @@ import { computed, ref } from "@vue/reactivity";
 import { useStore } from "vuex";
 
 import Question from "@/components/Question.vue";
+import AppDummy from "@/components/AppDummy.vue";
 
 export default {
   name: "App",
   components: {
     Question,
+    AppDummy,
   },
   setup() {
     const store = useStore();
@@ -38,6 +41,11 @@ export default {
       star,
       questionIds,
       setStar,
+      updatedQuestion: () =>
+        store.commit("updatedQuestion", {
+          id: 1,
+          question: Date.now().toString(),
+        }),
     };
   },
 };
