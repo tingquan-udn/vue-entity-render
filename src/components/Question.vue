@@ -1,22 +1,13 @@
-<template>
-  <h1>{{ question.question }}</h1>
-</template>
-
 <script>
-import { useStore } from "vuex";
-
+import { h } from "@vue/runtime-core";
 export default {
   name: "question",
   props: {
-    id: Number,
+    question: Object,
   },
-  setup(props) {
-    const store = useStore();
-    const question = store.state.questionEntity.entities[props.id];
-
-    return {
-      question,
-    };
+  render() {
+    console.log("Render: ", this.question.question);
+    return h("h1", {}, `${this.question.question}`);
   },
 };
 </script>

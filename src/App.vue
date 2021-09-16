@@ -9,7 +9,11 @@
       @click="setStar(i)"
     ></button>
   </div>
-  <Question v-for="id in questionIds" :key="id" :id="id" />
+  <Question
+    v-for="(question, index) in matchedQuestions"
+    :key="index"
+    :question="question"
+  />
 </template>
 
 <script>
@@ -29,8 +33,12 @@ export default {
     const store = useStore();
 
     const star = ref(0);
-    const questionIds = computed(
-      () => store.state.starEntity.entities[star.value].questionIds
+
+    const questions = computed(() =>
+      Object.values(store.state.questionEntity.entities)
+    );
+    const matchedQuestions = computed(() =>
+      questions.value.filter((question) => question.star === star.value)
     );
 
     function setStar(number) {
@@ -39,7 +47,7 @@ export default {
 
     return {
       star,
-      questionIds,
+      matchedQuestions,
       setStar,
       updatedQuestion: () =>
         store.commit("updatedQuestion", {
