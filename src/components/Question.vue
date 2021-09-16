@@ -1,14 +1,15 @@
-<template>
-  <h1>{{ question.question }}</h1>
-</template>
-
 <script>
+import { h } from "vue";
 import { useStore } from "vuex";
 
 export default {
   name: "question",
   props: {
     id: Number,
+  },
+  render() {
+    console.log("Render: ", this.question.question);
+    return h("h1", {}, `${this.question.question}`);
   },
   setup(props) {
     const store = useStore();
