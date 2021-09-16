@@ -29,9 +29,10 @@ export default {
     const store = useStore();
 
     const star = ref(0);
-    const questionIds = computed(
-      () => store.state.starEntity.entities[star.value].questionIds
-    );
+    const questionIds = computed(() => {
+      console.log("compute");
+      return store.state.starEntity.entities[star.value].questionIds;
+    });
 
     function setStar(number) {
       star.value = number;

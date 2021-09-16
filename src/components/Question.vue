@@ -1,5 +1,5 @@
 <script>
-import { h } from "vue";
+import { computed, h } from "vue";
 import { useStore } from "vuex";
 
 export default {
@@ -13,7 +13,9 @@ export default {
   },
   setup(props) {
     const store = useStore();
-    const question = store.state.questionEntity.entities[props.id];
+    const question = computed(
+      () => store.state.questionEntity.entities[props.id]
+    );
 
     return {
       question,
