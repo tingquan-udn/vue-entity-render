@@ -43,7 +43,7 @@ export default createStore({
     },
     addedQuestion(state, { question, star }) {
       if (typeof question !== "string" || typeof star !== "number") return;
-      if (!question || !(star in [1, 2, 3, 4, 5])) return;
+      if (!question || ![1, 2, 3, 4, 5].includes(star)) return;
 
       state.questionEntity.entities[question] = {
         star,
