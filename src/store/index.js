@@ -67,7 +67,7 @@ export default createStore({
     },
     addedQuestion(state, { question, star }) {
       if (typeof question !== "string" || typeof star !== "number") return;
-      if (!question || !(star in [1, 2, 3, 4, 5])) return;
+      if (!question || ![1, 2, 3, 4, 5].includes(star)) return;
 
       let id = Math.max(...state.questionEntity.ids) + 1;
       state.questionEntity.ids = [...state.questionEntity.ids, id];
