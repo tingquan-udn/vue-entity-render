@@ -2,31 +2,7 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
-    starEntity: {
-      ids: [0, 1, 2, 3, 4, 5],
-      entities: {
-        0: {
-          questionIds: [],
-        },
-        1: {
-          questionIds: [3],
-        },
-        2: {
-          questionIds: [4, 5],
-        },
-        3: {
-          questionIds: [6],
-        },
-        4: {
-          questionIds: [7],
-        },
-        5: {
-          questionIds: [1, 2],
-        },
-      },
-    },
     questionEntity: {
-      ids: [1, 2, 3, 4, 5, 6, 7],
       entities: {
         1: {
           star: 5,
@@ -64,6 +40,16 @@ export default createStore({
       let targetQuestion = state.questionEntity.entities[id];
       if (question) targetQuestion.question = question;
       if (star) targetQuestion.star = star;
+    },
+    addedQuestion(state, { question, star }) {
+      if (typeof question !== "string" || typeof star !== "number") return;
+      if (!question || !(star in [1, 2, 3, 4, 5])) return;
+
+      let id = Math.max(...state.questionEntity.ids) + 1;
+      state.questionEntity.entities[id] = {
+        star,
+        question,
+      };
     },
   },
   actions: {},
