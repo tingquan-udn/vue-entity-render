@@ -45,8 +45,7 @@ export default createStore({
       if (typeof question !== "string" || typeof star !== "number") return;
       if (!question || !(star in [1, 2, 3, 4, 5])) return;
 
-      let id = Math.max(...state.questionEntity.ids) + 1;
-      state.questionEntity.entities[id] = {
+      state.questionEntity.entities[question] = {
         star,
         question,
       };

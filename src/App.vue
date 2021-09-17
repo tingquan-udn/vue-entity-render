@@ -1,6 +1,9 @@
 <template>
   <AppDummy :obj="new Object()" />
   <img alt="Vue logo" src="./assets/logo.png" @click="updatedQuestion" />
+  <div>
+    <button class="btn" @click="addedQuestion">Added Question</button>
+  </div>
   <div class="stars">
     <button
       v-for="i in 5"
@@ -56,6 +59,11 @@ export default {
           id: 1,
           question: Date.now().toString(),
         }),
+      addedQuestion: () =>
+        store.commit("addedQuestion", {
+          question: Date.now().toString(),
+          star: Math.ceil(Math.random() * 5),
+        }),
     };
   },
 };
@@ -76,7 +84,16 @@ body {
   background: #1d1d1d;
 }
 
+.btn {
+  padding: 10px;
+  font-size: 16px;
+  background: white;
+  border: 3px solid lightblue;
+  border-radius: 10px;
+}
+
 .stars {
+  margin-top: 20px;
   display: flex;
 }
 
