@@ -70,13 +70,16 @@ export default createStore({
       if (!question || !(star in [1, 2, 3, 4, 5])) return;
 
       let id = Math.max(...state.questionEntity.ids) + 1;
-      state.questionEntity.ids.push(id);
+      state.questionEntity.ids = [...state.questionEntity.ids, id];
       state.questionEntity.entities[id] = {
         star,
         question,
       };
-      state.starEntity.entities[star].questionIds.push(id);
-      // state.starEntity.entities[star].questionIds = [...state.starEntity.entities[star].questionIds, id]
+      // state.starEntity.entities[star].questionIds.push(id);
+      state.starEntity.entities[star].questionIds = [
+        ...state.starEntity.entities[star].questionIds,
+        id,
+      ];
     },
   },
   actions: {},
